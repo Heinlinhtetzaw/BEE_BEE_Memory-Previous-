@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* background: linear-gradient(135deg, #a2c2e6, #f7c6c7, #fef5d0); */
+            /* background: linear-gradient(-75deg, #fbc2eb, #e5a9d3, #78a3eb, #a1c4fd); */
+            /* background: linear-gradient(-135deg, #fbc2eb, #78a3eb); */
+            background-color:#7CC0CF;
+
+
+
+        }
+        img {
+            width: 10%;
+            height: 10%;
+        }
+        header {
+            position: fixed;
+            backdrop-filter: blur(10px);
+            background-color: rgba(246, 178, 178, 0.087);
+            width: 100%;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: -12%;
+        }
+        .navigation {
+            margin-right: 15px;
+        }
+        .navigation a {
+            position: relative;
+            font-size: 0.5cm;
+            color: white;
+            text-decoration: none;
+            margin-left: 50px;
+            padding-right: 10px;
+        }
+        .navigation a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            bottom: -6px;
+            background-color: white;
+            border-radius: 5px;
+            transform: scaleX(0);
+        }
+        .navigation a:hover::after {
+            transform: scaleX(1);
+            transition: .5s;
+            transform-origin: right;
+        }
+        .navigation i {
+            font-size: 0.6cm;
+        }
+        header img {
+            width: 10%;
+            height: 10%;
+        }
+        :root {
+            --margin-top: 20px;
+            --margin-bottom: 20px;
+            --font-weight: 600;
+            --containerA-button-color: #7CC0CF;
+            --hovercolor: #5cc5dd;
+            --max-width: 1170px;
+            --footerbackground-color: #24262b;
+        }
+        .parentcontainer {
+            margin-top: 12%;
+        }
+        .containerA {
+            width: 97%;
+            height: auto;
+            border: 1px solid grey;
+            border-radius: 10px;
+            background: linear-gradient(#96b6ed, #f8f6f9);
+        }
+        .containerA .header {
+            margin-top: 20px;
+            font-size: 2em;
+            font-weight: var(--font-weight);
+            text-align: center;
+            letter-spacing: 15px;
+            color: #0a0909;
+        }
+        .containerA .cardcontainer1 {
+            display: flex;
+            margin-top: var(--margin-top);
+            margin-bottom: var(--margin-bottom);
+        }
+        .containerA .cardcontainer1 .card {
+            width: 25%;
+            height: 350px;
+            border: none;
+            border-radius: 10px;
+            background-color: azure;
+            margin: 20px;
+            margin-left: 200px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        .containerA .cardcontainer1 .card img {
+            width: 100%;
+            height: 190px;
+            border-radius: 10px;
+        }
+        .containerA .cardcontainer1 .card .content {
+            text-align: center;
+            font-size: 25px;
+            font-weight: var(--font-weight);
+        }
+        .containerA .cardcontainer1 .card .btn2 {
+            margin-top: 30px;
+        }
+        .containerA .card .btn2 a {
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid grey;
+            border-radius: 5px;
+        }
+        .containerA .card .btn2 a:hover {
+            background-color: var(--hovercolor);
+            transition: .3s ease;
+            color: #fff;
+            border: none;
+        }
+        .containerA .cardcontainer1 .card .btn1 {
+            margin-top: 25px;
+        }
+        .containerA .card .btn1 a {
+            text-decoration: none;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: var(--containerA-button-color);
+        }
+        .containerA .card .btn1 a:hover {
+            color: #fff;
+            background-color: var(--hovercolor);
+            transition: .3s ease;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; 
+            background-color: rgb(0,0,0); 
+            background-color: rgba(0,0,0,0.4); 
+        }
+
+        .modal-content {
+            background: linear-gradient(#96b6ed, #f8f6f9);
+            margin: 15% auto; 
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; 
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-content img {
+            width: 30%;
+            margin: 10px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 10px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .button:active {
+            background-color: #004094;
+            transform: scale(0.95);
+        }
+
+        .button.disabled {
+            background-color: #d6d6d6;
+            cursor: not-allowed;
+        }
+        footer {
+		    background-color: rgba(0, 0, 0, 0);
+		    backdrop-filter: blur(10px);
+		    color: white;
+		    padding: 20px 0;
+		    text-align: center;
+		    width: 100%;
+		    font-family: 'Poppins', sans-serif;
+		    max-height:100px;
+		    position: relative;
+		    bottom: 0;
+		} 
+
+		footer p {
+		    text-align: center;
+		    margin: 0;
+		}
+
+        
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <header>
+        <img src="image/memory_game_logo-removebg-preview.png">
+        <nav class="navigation">
+            <a href="Home.html"><i class="fa-solid fa-house">&nbsp;</i> Home</a>
+            <a href="Aboutgame.html"><i class="fa-solid fa-bars">&nbsp;</i>About Games</a>
+            <a href="Profile.jsp"><i class="fa-solid fa-user">&nbsp;</i>Profile</a>  
+            <a href="Contact.html"><i class="fa-solid fa-id-card-clip">&nbsp;</i>Contact</a>
+        </nav>
+    </header>
+    
+    <div class="parentcontainer">
+        <center>
+            <div class="containerA">
+                <div class="header">
+                    Recommend For Kids
+                </div>
+                <div class="cardcontainer1">
+                    <div class="card">
+                        <img src="image/colorcard1.jpg">
+                        <div class="content">Color Card game</div>
+                        <center>
+                            <div class="btn1">
+                                <a href="color.jsp">Play now</a>
+                            </div>
+                            <div class="btn2">
+                                <a href="#" class="view-about-game" data-modal="colorCardModal">About color game</a>
+                            </div>
+                        </center>
+                    </div>
+                    <div class="card">
+                        <img src="image/math1.jpg">
+                        <div class="content">Math game</div>
+                        <center>
+                            <div class="btn1">
+                                <a href="math.jsp">Play now</a>
+                            </div>
+                            <div class="btn2">
+                                <a href="#" class="view-about-game" data-modal="mathGameModal">About math game</a>
+                            </div>
+                        </center>
+                    </div>
+                </div>
+            </div>
+            <div class="containerA">
+                <div class="header">
+                Recommend For Toddlers
+                </div>
+    
+                <div class="cardcontainer1">
+                    <div class="card">
+                        <img src="image/emoji1.jpg">
+    
+                        <div class="content">
+                            Card game
+                        </div>
+    
+                        <center>
+                            <div class="btn1">
+                                <a href="emoji.jsp">Play now</a>
+                            </div>
+    
+                            <div class="btn2">
+                                <a href="#" class="view-about-game" data-modal="emojiGameModal">About Card game</a>
+                            </div>
+                          
+                        </center>
+                    </div>
+    
+                    <div class="card">
+                        <img src="image/multiplying2.jpg">
+    
+                        <div class="content">
+                            Multiplying game
+                        </div>
+    
+                        <center>
+                            <div class="btn1">
+                                <a href="multiplying.jsp">Play now</a>
+                            </div>
+    
+                            <div class="btn2">
+                                <a href="#" class="view-about-game" data-modal="multiplyingGameModel">About Multiying game</a>
+                            </div>
+                        </center>
+                    </div>
+
+                
+                </div>
+            </div>
+            <br>
+
+            <div class="containerA">
+                <div class="header">
+                Recommend For Teenagers
+                </div>
+    
+                <div class="cardcontainer1">
+                    <div class="card">
+                        <img src="image/3number.jpg">
+    
+                        <div class="content">
+                            Number game
+                        </div>
+    
+                        <center>
+                            <div class="btn1">
+                                <a href="3number.jsp">Play now</a>
+                            </div>
+    
+                            <div class="btn2">
+                                <a href="#" class="view-about-game" data-modal="3numberGameModel">About 3number game</a>
+                            </div>
+                        </center>
+                    </div>
+    
+                    <div class="card">
+                        <img src="image/brain1.jpg">
+    
+                        <div class="content">
+                            Brain game
+                        </div>
+    
+                        <center>
+                            <div class="btn1">
+                                <a href="brain.jsp">Play now</a>
+                            </div>
+    
+                            <div class="btn2">
+                                <a href="#" class="view-about-game" data-modal="brainGameModel">About brain game</a>
+                            </div>
+                        </center>
+                    </div>
+
+                </div>
+            </div>
+            <br>
+
+            <div class="containerA">
+                <div class="header">
+                Recommend For 2 Players
+                </div>
+    
+                <div class="cardcontainer1">
+                    <div class="card">
+                        <img src="image/2playercard.jpg">
+    
+                        <div class="content">
+                            2 Player Card game
+                        </div>
+    
+                        <center>
+                            <div class="btn1">
+                                <a href="2Playercard.html">Play now</a>
+                            </div>
+    
+                            <div class="btn2">
+                                <a href="#" class="view-about-game" data-modal="2PlayercardGameModel">About 2playercard game</a>
+                            </div>
+                        </center>
+                    </div>
+    
+                    <div class="card">
+                        <img src="image/2playertictatoe1.jpg">
+    
+                        <div class="content">
+                            Tic Ta Toe game
+                        </div>
+    
+                        <center>
+                            <div class="btn1">
+                                <a href="2PlayerTicTaToe.html">Play now</a>
+                            </div>
+    
+                            <div class="btn2">
+                                <a href="#" class="view-about-game" data-modal="2PlayerTicTaToeGameModel">About 2PlayerTicTaToe game</a>
+                            </div>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </center>
+    </div>
+
+
+            <!-- Add more containers here if needed -->
+        </center>
+    </div>
+
+    <!-- Modals -->
+    <div id="colorCardModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('colorCardModal')">&times;</span>
+            <h2>Color Card Game</h2>
+        </br> </br> 
+            <p>You have to choose the color cards within the time limit to win .
+                Also, there are ways to customize the game.</p>
+            </br>
+            <a href="#" class="button" onclick="closeModal('colorCardModal')">Thanks!</a>
+        </div>
+    </div>
+
+    <div id="mathGameModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('mathGameModal')">&times;</span>
+            <h2>Math game</h2> 
+        </br> </br>
+            <p> You can use math games to improve your math skills.
+                In the math game,we have to calaulate the answer to the given 
+                question and enter the correct answer.</p>
+            </br>
+            <a href="#" class="button" onclick="closeModal('mathGameModal')">Thanks!</a>
+        </div>
+    </div>
+
+    <div id="emojiGameModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('emojiGameModal')">&times;</span>
+            <h2>Card game</h2>
+        </br> </br> 
+            <p>The picture match game where you have to find the pairs od cards.Concentrate to remember and find 
+                the pictures that match of beautiful cards in challenging levels.
+                Make every picture matchup and level up your memoization, attention, focus and concentartion skills.</p>
+            </br>
+            <a href="#" class="button" onclick="closeModal('emojiGameModal')">Thanks!</a>
+        </div>
+    </div>
+
+    <div id="multiplyingGameModel" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('multiplyingGameModel')">&times;</span>
+            <h2>Multiplying game</h2>
+        </br> </br> 
+            <p>  The result of the multiplication of two numbers must be 
+                selected from the answers given below within the given second.</p>
+            </br>
+            <a href="#" class="button" onclick="closeModal('multiplyingGameModel')">Thanks!</a>
+        </div>
+    </div>
+
+    <div id="3numberGameModel" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('3numberGameModel')">&times;</span>
+            <h2>Number game</h2>
+        </br> </br> 
+            <p>  Given a number,the sum of three of the numbers.
+                Listed below must be the same as the given numbers.</p>
+            </br>
+            <a href="#" class="button" onclick="closeModal('3numberGameModel')">Thanks!</a>
+        </div>
+    </div>
+
+    <div id="brainGameModel" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('brainGameModel')">&times;</span>
+            <h2>Brain game</h2>
+        </br> </br> 
+            <p> You must note down the numbers during the given time that
+                will be displayed and write them down within the specified time.</p>
+            </br>
+            <a href="#" class="button" onclick="closeModal('brainGameModel')">Thanks!</a>
+        </div>
+    </div>
+
+
+    <div id="2PlayercardGameModel" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('2PlayercardGameModel')">&times;</span>
+            <h2>2 Player Card game</h2>
+        </br> </br> 
+            <p> Two players card game is a picture game where two players have to
+                find pairs of cards focus to remember and find beautiful cards and matching pictures in challenging 
+                levels .Match every picture and your memorization , attention ,improve your concentration skills.</p>
+            </br>
+            <a href="#" class="button" onclick="closeModal('2PlayercardGameModel')">Thanks!</a>
+        </div>
+    </div>
+
+
+    <div id="2PlayerTicTaToeGameModel" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('2PlayerTicTaToeGameModel')">&times;</span>
+            <h2>Tic Ta Toe game</h2>
+        </br> </br> 
+            <p> Fill all within the square bar must be filled with X or O 
+                adjacent to the row or column .X or O must be aligned with 
+                the horizontal row or diagonal  row.</p>
+            </br>
+            <a href="#" class="button" onclick="closeModal('2PlayerTicTaToeGameModel')">Thanks!</a>
+        </div>
+    </div>
+<footer>
+              <div class="footer-content">
+                  <p>&copy; 2024 Memory Game. All rights reserved.</p>
+              </div>
+          </footer>
+
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const viewAboutGameButtons = document.querySelectorAll('.view-about-game');
+
+            viewAboutGameButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const modalId = button.getAttribute('data-modal');
+                    openModal(modalId);
+                });
+            });
+
+            window.addEventListener('click', (e) => {
+                if (e.target.classList.contains('modal')) {
+                    closeModal(e.target.id);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

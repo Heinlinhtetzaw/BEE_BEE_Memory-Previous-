@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="css/profile.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />   
+</head>
+<body>
+
+    <div class="background"></div>
+    <header>
+        <img src="image/memory_game_logo-removebg-preview.png" alt="Logo">
+        <nav class="navigation">
+            <a href="Home.html"><i class="fa-solid fa-house">&nbsp;</i>Home</a>
+            <a href="Aboutgame.html"><i class="fa-solid fa-bars">&nbsp;</i>About Games</a>
+            <a href="Profile.jsp"><i class="fa-solid fa-user">&nbsp;</i>Profile</a>  
+            <a href="contact.html"><i class="fa-solid fa-id-card-clip">&nbsp;</i>Contact</a>
+            <a href="index.jsp"><i class="fa-solid fa-right-from-bracket">&nbsp;</i>Logout</a>
+        </nav>
+    </header>
+    <div class="profile-container">
+        <div class="profile-card">
+            <div class="profile-image">
+                <!-- <img src="https://via.placeholder.com/150" alt="Profile Picture"> -->
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="profile-details">
+                <p><strong>ID:</strong> 123456</p>
+                <p><strong>Name:</strong> John Doe</p>
+                <p><strong>Email:</strong> john.doe@example.com</p>
+                <p><strong>Total games played:</strong> 10</p>
+                <div >
+                    <center><button class="btn2" onclick="toggleForm()">Update Your Information</button></center>
+                </div>
+            </div>
+        </div>
+
+        <div class="user-info-table">
+            <h2>Logged-in User Information Table</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Login Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>123456</td>
+                        <td>JohnDoe</td>
+                        <td>john.doe@example.com</td>
+                        <td>2024-08-31 12:00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="updateForm" class="profile-form">
+        <span class="close" onclick="closeModal('colorCardModal')">&times;</span>
+    
+        <h2>Update Profile Information</h2>
+        <form action="Profile.html" method="POST" onsubmit="return validateForm()">
+            <table>
+                <tr>
+                    <td><label for="profile-id">User ID:</label></td>
+                    <td><input type="text" id="profile-id" name="profile-id" value="123456" readonly></td>
+                </tr>
+                <tr>
+                    <td><label for="profile-name">Name:</label></td>
+                    <td><input type="text" id="profile-name" name="profile-name" value="John Doe"></td>
+                </tr>
+                <tr>
+                    <td><label for="profile-email">Email:</label></td>
+                    <td><input type="email" id="profile-email" name="profile-email" value="john.doe@example.com"></td>
+                </tr>
+                
+                <tr>
+                    <td colspan="2" align="center" valign="middle"><button type="submit">Update</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script>
+        function toggleForm() {
+            const form = document.getElementById('updateForm');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function closeModal() {
+            const form = document.getElementById('updateForm');
+            form.style.display = 'none';
+        }
+
+        function validateForm() {
+            var name = document.getElementById('profile-name').value;
+            var email = document.getElementById('profile-email').value;
+            var password = document.getElementById('profile-password').value;
+
+            if (name === '' || email === '' || password === '') {
+                alert('All fields must be filled out.');
+                return false; // Prevent form submission
+            }
+            return true; // Allow form submission
+        }
+        </script>
+ 
+</body>
+</html>
